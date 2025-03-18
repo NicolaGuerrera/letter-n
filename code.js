@@ -56,7 +56,7 @@ export function disegnaPunto({
   fill(hue, saturation, brightness);
   noStroke();
 
-  rectMode(CENTER);
+  ellipseMode(CENTER);
   rotate(frameCount + indice);
 
   // Add slight variation based on device tilt
