@@ -44,19 +44,21 @@ export function disegnaPunto({
 }) {
   stroke("black");
   push();
-  //fill("green");
   translate(x, y);
   rotate(frameCount);
-  strokeWeight(4);
-  rect(0, 0, 50, 4);
+  rect(0, 0, 80, 60);
   pop();
 }
+
+let img;
 
 /**
  * Carica le risorse necessarie
  * Esempio: carica immagini, suoni, ecc.
  */
-export function caricamentoRisorse() {}
+export function caricamentoRisorse() {
+  img = loadImage("./assets/trip.png");
+}
 
 /**
  * Imposta le impostazioni iniziali
@@ -76,7 +78,7 @@ export function sotto(disegnaTesto) {
   background("deeppink");
 
   // [INFO] Rimuovi il commento per disegnare il testo
-  fill("red");
+  //fill("red");
   disegnaTesto();
 }
 
