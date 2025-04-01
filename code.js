@@ -1,11 +1,15 @@
 export const configurazione = {
   testo: "N",
-  dimensione: 1.05,
+
+  dimensione: 0.8,
   interlinea: 0.7,
   allineamento: "centro",
   percorsoFont: "./assets/InputMonoCondensed-BoldItalic.ttf",
-  mostraTestoSotto: true,
-  mostraTestoSopra: false,
+
+  sensibilitàMicrofonoBase: 1,
+  densitàPuntiBase: 1,
+
+  nascondiInterfaccia: false,
 };
 
 /**
@@ -16,12 +20,13 @@ export const configurazione = {
  * @property {number} x - La coordinata x del punto
  * @property {number} y - La coordinata y del punto
  * @property {number} angolo - L'angolo della curva della font in quel punto
- * @property {number} indice - Il numero del punto nella sequenza
- * @property {number} unita - Unita' di misura di riferimento
- * @property {number} volume - Il volume del microfono
- * @property {number} [alpha] - Device orientation alpha angle (z-axis rotation)
- * @property {number} [beta] - Device orientation beta angle (front-to-back tilt)
- * @property {number} [gamma] - Device orientation gamma angle (left-to-right tilt)
+ * @property {number} indice - Il numero del punto nella sequenza (0, 1, 2, 3, ...)
+ * @property {number} unita - Unita' di misura: corrisponde al 10% della dimensione più piccola della finestra (larghezza o altezza)
+ * @property {number} volume - Il volume del microfono - Varia da 0 a 1
+ * @property {number} frameCount - Il numero di frame passati dall'avvio del programma
+ * @property {number} [alpha] - Device orientation alpha angle (z-axis rotation) - Varia da 0 a 360
+ * @property {number} [beta] - Device orientation beta angle (front-to-back tilt) - Varia da -90 a 90
+ * @property {number} [gamma] - Device orientation gamma angle (left-to-right tilt) - Varia da -90 a 90
  *
  * @param {Ingredienti} ingredienti
  */
@@ -32,26 +37,30 @@ export function disegnaPunto({
   indice,
   unita,
   volume,
+  frameCount,
   alpha = 0,
   beta = 0,
   gamma = 0,
 }) {
   push();
-  fill("black");
-  //ellipse(10, 0, 30);
+  fill("green");
+  line(x, y, mouseX, mouseY);
   translate(x, y);
-  rotate(frameCount * 20);
-  ellipse(0, 0, 11, 13);
-  fill("yellow");
-  //rect(0, 0, 4, 5);
-  ellipse(0, 0, 6, 4);
+  rotate(frameCount);
+  ellipse(0, 0, 40, 10);
   pop();
 }
 
-//
-
+/**
+ * Carica le risorse necessarie
+ * Esempio: carica immagini, suoni, ecc.
+ */
 export function caricamentoRisorse() {}
 
+/**
+ * Imposta le impostazioni iniziali
+ * Esempio: impostazioni di frame rate, misura degli angoli, ecc.
+ */
 export function impostazioni() {
   frameRate(30);
   angleMode(DEGREES);
@@ -62,9 +71,10 @@ export function impostazioni() {
  * @param {function} disegnaTesto - La funzione che disegna il testo
  */
 export function sotto(disegnaTesto) {
-  background(255);
+  background("deeppink");
 
-  fill("blue");
+  // [INFO] Rimuovi il commento per disegnare il testo
+  fill("red");
   disegnaTesto();
 }
 
@@ -73,7 +83,7 @@ export function sotto(disegnaTesto) {
  * @param {function} disegnaTesto - La funzione che disegna il testo
  */
 export function sopra(disegnaTesto) {
-  //   stroke("white");
-  //   noFill();
-  //   disegnaTesto();
+  // [INFO] Rimuovi il commento per disegnare il testo
+  // fill("black");
+  // disegnaTesto();
 }
