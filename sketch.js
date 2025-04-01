@@ -19,13 +19,18 @@ import {
 
 /* Controllers */
 
-const audioController = new AudioController();
+const audioController = new AudioController(
+  configurazione.sensibilitàMicrofonoBase
+);
 const orientationController = new DeviceOrientationController();
-const densityController = new DensityController();
+const densityController = new DensityController(
+  configurazione.densitàPuntiBase
+);
 const inputController = new InputController(
   audioController,
   densityController,
-  orientationController
+  orientationController,
+  configurazione.nascondiInterfaccia
 );
 
 /* Font */
@@ -96,6 +101,7 @@ function draw() {
       alpha: orientationData.alpha,
       beta: orientationData.beta,
       gamma: orientationData.gamma,
+      frameCount,
     })
   );
 
