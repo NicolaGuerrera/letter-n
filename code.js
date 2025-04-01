@@ -42,12 +42,13 @@ export function disegnaPunto({
   beta = 0,
   gamma = 0,
 }) {
+  stroke("black");
   push();
-  fill("green");
-  line(x, y, mouseX, mouseY);
+  //fill("green");
   translate(x, y);
   rotate(frameCount);
-  ellipse(0, 0, 40, 10);
+  strokeWeight(4);
+  rect(0, 0, 50, 4);
   pop();
 }
 
@@ -64,6 +65,7 @@ export function caricamentoRisorse() {}
 export function impostazioni() {
   frameRate(30);
   angleMode(DEGREES);
+  rectMode(CENTER);
 }
 
 /**
